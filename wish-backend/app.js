@@ -53,69 +53,69 @@ app.get('/healthz', (req, res) => {
 })
 
 // Shows the URL of the MongoDB instance
-app.get('/url', (req, res) => {
-    res.send(url);
-})
+// app.get('/url', (req, res) => {
+//     res.send(url);
+// })
 
 // Searches performance collection using query modifier from HTTP query
 // Should not be used publicly
-app.get('/findall', (req, res) => {
-    const client = new MongoClient(url, {
-        serverApi: {
-            version: ServerApiVersion.v1,
-            strict: true,
-            deprecationErrors: true,
-        }
-    });
-    console.log("connection created");
-    async function findall() {
-        var result = ""
-        try {
-            await client.connect();
-            console.log("connected");
-            const collection = client.db(mongoDatabase).collection(mongoCollection);
-            console.log("collection set");
-            result = await collection.find().toArray();
-            console.log("search completed");
-        } finally {
-            await client.close();
-            console.log("client closed");
-        }
-        console.log("returning result:");
-        console.log(result);
-        res.send(result);
-    }
+// app.get('/findall', (req, res) => {
+//     const client = new MongoClient(url, {
+//         serverApi: {
+//             version: ServerApiVersion.v1,
+//             strict: true,
+//             deprecationErrors: true,
+//         }
+//     });
+//     console.log("connection created");
+//     async function findall() {
+//         var result = ""
+//         try {
+//             await client.connect();
+//             console.log("connected");
+//             const collection = client.db(mongoDatabase).collection(mongoCollection);
+//             console.log("collection set");
+//             result = await collection.find().toArray();
+//             console.log("search completed");
+//         } finally {
+//             await client.close();
+//             console.log("client closed");
+//         }
+//         console.log("returning result:");
+//         console.log(result);
+//         res.send(result);
+//     }
 
-    findall(req.query).catch(console.dir);
-})
+//     findall(req.query).catch(console.dir);
+// })
 
 // Insert a single document into the collection, passed as a JSON string
 // No checks on formatting are included
 // This is the GET request - probably not needed (document attached to 'query' parameter)
-app.get('/insert', (req, res) => {
-    const client = new MongoClient(url);
-    console.log("connection created");
+// app.get('/insert', (req, res) => {
+//     const client = new MongoClient(url);
+//     console.log("connection created");
 
-    async function insertwishget(entry) {
-        console.log("Inserting: " + JSON.stringify(entry));
-        try {
-            await client.connect();
-            console.log("connected");
-            const collection = client.db(mongoDatabase).collection(mongoCollection);
-            console.log("collection set");
-            result = await collection.insertOne(entry);
-            console.log("insert completed");
-        } finally {
-            await client.close();
-            console.log("client closed");
-        }
-        console.log("insert result:");
-        console.log(result);
-        res.send(result);
-    }
+//     async function insertwishget(entry) {
+//         console.log("Inserting: " + JSON.stringify(entry));
+//         try {
+//             await client.connect();
+//             console.log("connected");
+//             const collection = client.db(mongoDatabase).collection(mongoCollection);
+//             console.log("collection set");
+//             result = await collection.insertOne(entry);
+//             console.log("insert completed");
+//         } finally {
+//             await client.close();
+//             console.log("client closed");
+//         }
+//         console.log("insert result:");
+//         console.log(result);
+//         res.send(result);
+//     }
 
-    insertwishget(req.query).catch(console.dir);
-})
+//     insertwishget(req.query).catch(console.dir);
+// })
 
 // Insert a single document into the collection, passed as a JSON string
 // No checks on formatting are included
