@@ -9,12 +9,12 @@ const http = require('http');
 // Collect database settings from environment variables
 const mongoHost = process.env.database_host || '127.0.0.1';
 const mongoPort = process.env.database_port || 27017;
-//const mongoDatabase = process.env.database_name;
+const mongoDatabase = process.env.database_name || 'wishes';
 const mongoUser = process.env.database_user;
 const mongoPassword = process.env.database_password;
 //const mongoCollection = process.env.database_collection;
 
-const mongoDatabase = "wishes";
+// const mongoDatabase = "wishes";
 const mongoCollection = "wishes";
 
 // Build MongoDB connection string
