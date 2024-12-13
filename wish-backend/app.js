@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const os = require("os");
 // var mongo = require('mongodb'); 
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const http = require('http');
 
 // Collect database settings from environment variables
@@ -12,6 +12,7 @@ const mongoPort = process.env.database_port || 27017;
 const mongoDatabase = process.env.database_name || 'wishes';
 const mongoUser = process.env.database_user;
 const mongoPassword = process.env.database_password;
+const mongoURL = process.env.mongo_url;
 //const mongoCollection = process.env.database_collection;
 
 // const mongoDatabase = "wishes";
@@ -20,14 +21,16 @@ const mongoCollection = "wishes";
 // Build MongoDB connection string
 //================================
 // Used for OpenShift environment
-if (mongoUser) {
+if (mongoURL) {
+    var url = mongoURL
+} else if (mongoUser) {
     var url = "mongodb://" + mongoUser + ":" + mongoPassword + "@" + mongoHost + ":" + mongoPort + "/" + mongoDatabase
 } else {
     var url = "mongodb://" + mongoHost + ":" + mongoPort + "/" + mongoDatabase
 }
+
 // Used for local testing
-// var url = "mongodb://127.0.0.1:27017"
-// var url = "mongodb+srv://andrew:Fdpgz9Cf@cluster0.xahhl.mongodb.net/?retryWrites=true&w=majority";
+
 console.log("MongoDB instance is at: " + url)
 
 // Set Express.js to listen for all connections
@@ -57,7 +60,13 @@ app.get('/url', (req, res) => {
 // Searches performance collection using query modifier from HTTP query
 // Should not be used publicly
 app.get('/findall', (req, res) => {
-    const client = new MongoClient(url);
+    const client = new MongoClient(url, {
+        serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+        }
+    });
     console.log("connection created");
     async function findall() {
         var result = ""
@@ -86,7 +95,7 @@ app.get('/findall', (req, res) => {
 app.get('/insert', (req, res) => {
     const client = new MongoClient(url);
     console.log("connection created");
-    
+
     async function insertwishget(entry) {
         console.log("Inserting: " + JSON.stringify(entry));
         try {
