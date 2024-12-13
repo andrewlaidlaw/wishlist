@@ -20,8 +20,12 @@ function App() {
   const [wish, setWish] = useState("");
   const [submitted, setSubmitted] = useState(true);
 
-  const url = "http://localhost:8080/insert";
+  // Get URL from environment variable in .env file
+  // Must be the full API location (including path)
+  const url = process.env.REACT_APP_BACKEND_URL;
+  // const url = "http://localhost:8080/insert";
 
+  // handle submission of an idea
   const handleSubmit = (event) => {
     event.preventDefault();
     if (name === "") {
@@ -32,11 +36,13 @@ function App() {
     setSubmitted(false);
   }
 
+  //handle the reset of the page
   const handlereset = (event) => {
     event.preventDefault();
     setSubmitted(true);
   }
 
+  // define the function to add an entry to the Mongo Database
   const addToMongo = (name, wish) => {
     var data = { name: name, wish: wish, time: Date.now() };
     console.log(data);
