@@ -1,0 +1,20 @@
+@use "@carbon/react";
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.wish-heading {
+    @include type-style('productive-heading-03');
+    margin-top: $spacing-02;
+    margin-bottom: $spacing-04;
+  }
+
+.wish-p {
+    margin-top: $spacing-02;
+    margin-bottom: $spacing-08;
+}
+
+.wish-input {
+    margin-top: $spacing-06
+}
