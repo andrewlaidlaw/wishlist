@@ -28,7 +28,7 @@ The backend code is in the `/wishlist` folder of this repository.
 
 ### User Interface
 This is the webpage that users will interact with, and includes a simple form to add their wish to the database. It is built in 
-React using the (IBM Carbon design system)[https://carbondesignsystem.com/] to present a consistent and familiar user interface.
+React using the [IBM Carbon design system](https://carbondesignsystem.com/) to present a consistent and familiar user interface.
 
 Only one value needs to be passed to the User interface as an environment variable, which is the URL of the Backend API as 
 `REACT_APP_BACKEND_URL`.
