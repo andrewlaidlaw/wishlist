@@ -141,8 +141,11 @@ app.post('/insert', (req, res) => {
         console.log(result);
         res.send(result);
     }
-
-    insertwishpost(req.body).catch(console.dir);
+    if (req.body.name && req.body.wish) {
+        insertwishpost(req.body).catch(console.dir);
+    } else {
+        res.send("Not accepted");
+    }
 })
 
 // Deploy web server and log status
