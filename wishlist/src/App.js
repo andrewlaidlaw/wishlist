@@ -77,9 +77,9 @@ function App() {
             <HeaderMenuItem href="https://www.ibm.com/power/">
               Power Landing Page
             </HeaderMenuItem>
-            <HeaderMenuItem href="made.html">
+            {/* <HeaderMenuItem href="made.html">
               How we made this
-            </HeaderMenuItem>
+            </HeaderMenuItem> */}
             <HeaderMenuItem href="https://github.com/andrewlaidlaw/wishlist">
               The GitHub repository
             </HeaderMenuItem>
