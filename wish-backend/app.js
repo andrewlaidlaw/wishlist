@@ -141,7 +141,7 @@ app.post('/insert', (req, res) => {
         console.log(result);
         res.send(result);
     }
-    if (req.body.name && req.body.wish) {
+    if (req.body.time && req.body.wish) {
         insertwishpost(req.body).catch(console.dir);
     } else {
         res.send("Not accepted");
