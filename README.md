@@ -24,7 +24,7 @@ The deployment of the Backend API requires information injected as environment v
 MongoDB database as well as access credentiasl (created from the Secret that is generated when deploying the MongoDB database 
 instance). These environment variables are `DATABASE_NAME` and `MONGO_URL` respectively.
 
-The backend code is in the `/wishlist` folder of this repository.
+The backend code is in the `/wish-backend` folder of this repository.
 
 ### User Interface
 This is the webpage that users will interact with, and includes a simple form to add their wish to the database. It is built in 
@@ -33,4 +33,4 @@ React using the [IBM Carbon design system](https://carbondesignsystem.com/) to p
 Only one value needs to be passed to the User interface as an environment variable, which is the URL of the Backend API as 
 `REACT_APP_BACKEND_URL`.
 
-The user interface code is in the `/wishlist-ui` folder of this repository.
+The user interface code is in the `/wishlist` folder of this repository.
