@@ -7,8 +7,11 @@ import {
   Grid,
   Header,
   HeaderName,
+  HeaderNavigation,
+  HeaderMenuItem,
   TextInput,
   TextArea,
+  SkipToContent,
 } from "@carbon/react";
 import { Theme } from "@carbon/react";
 import "./app.scss";
@@ -64,35 +67,57 @@ function App() {
     <Content>
       <Theme theme="g100">
         <Header aria-label="IBM Power">
+          <SkipToContent />
           <HeaderName
-            href="https://www.ibm.com/power/"
             prefix="IBM"
           >
             Power
           </HeaderName>
+          <HeaderNavigation>
+            <HeaderMenuItem href="https://www.ibm.com/power/">
+              Power Landing Page
+            </HeaderMenuItem>
+            <HeaderMenuItem href="made.html">
+              How we made this
+            </HeaderMenuItem>
+            <HeaderMenuItem href="https://github.com/andrewlaidlaw/wishlist">
+              The GitHub repository
+            </HeaderMenuItem>
+            <HeaderMenuItem href="https://try.openshift.com">
+              Red Hat OpenShift
+            </HeaderMenuItem>
+          </HeaderNavigation>
         </Header>
       </Theme>
-      <Theme theme="white">
-        {!submitted ||
-          <Content>
-            <Grid>
-              <Column md={6} lg={{ span: 8, offset: 4 }} sm={4}>
-                <h2 className="wish-heading">2025 Wishlist</h2>
-                <p className="wish-p">
-                  What do you want to see from IBM Power in 2025? Contribute your wish today to help
-                  influence how the IBM Power team in the UK and Ireland work with our Ecosystem of
-                  Partners over the next 12 months.
-                </p>
-                <Form onSubmit={handleSubmit}>
-                  <TextInput id="name" type="text" labelText="Your name [optional]" value={name} onChange={(e) => setName(e.target.value)} />
-                  <TextArea className="wish-input" labelText="Your wish for 2025" helperText="Add your idea here for what you would like to see from IBM Power in 2025" rows={4} id="wish" onChange={(w) => setWish(w.target.value)} />
-                  <Button className="wish-input" kind="primary" type="submit" id="submit-button">Submit</Button>
-                </Form>
-              </Column>
-            </Grid>
-          </Content>
-        }
-        {submitted ||
+
+      {!submitted ||
+        <div>
+          <Theme theme="white">
+            <Content>
+              <Grid>
+                <Column md={6} lg={{ span: 8, offset: 4 }} sm={4} >
+                  <h2 className="wish-heading">IBM Power 2025 Wishlist</h2>
+                  <p className="wish-p">
+                    What do you want to see from IBM Power in 2025? Contribute your wish today to help
+                    influence how the IBM Power team in the UK and Ireland work with our Ecosystem of
+                    Partners over the next 12 months.
+                  </p>
+                </Column>
+                <Column md={6} lg={{ span: 8, offset: 4 }} sm={4}>
+                  <Form onSubmit={handleSubmit}>
+                    <TextInput id="name" type="text" labelText="Your name [optional]" value={name} onChange={(e) => setName(e.target.value)} />
+                    <TextArea className="wish-input" labelText="Your wish for 2025" helperText="Add your idea here for what you would like to see from IBM Power in 2025" rows={4} id="wish" onChange={(w) => setWish(w.target.value)} />
+                    <Button className="wish-input" kind="primary" type="submit" id="submit-button">Submit</Button>
+                  </Form>
+                </Column>
+              </Grid>
+            </Content>
+          </Theme>
+        </div>
+      }
+      {submitted ||
+        <Theme theme="white">
+
           <Content>
             <Grid>
               <Column md={6} lg={{ span: 8, offset: 4 }} sm={4}>
@@ -102,13 +127,15 @@ function App() {
                   ideas that you submit the better next year can be for all of us.
 
                 </p>
-                  <Button className="wish-input" kind="primary" type="button" id="reset-button" onClick={handlereset}>Add another wish</Button>
+                <Button className="wish-input" kind="primary" type="button" id="reset-button" onClick={handlereset}>Add another wish</Button>
               </Column>
             </Grid>
           </Content>
-        }
-      </Theme>
-    </Content>
+
+        </Theme>
+      }
+    </Content >
+
     // </BrowserRouter>
   );
 }

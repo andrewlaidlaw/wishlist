@@ -4,15 +4,20 @@
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
 
+.heading-panel {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 .wish-heading {
-    @include type-style('productive-heading-03');
-    margin-top: $spacing-02;
+    @include type-style('productive-heading-06');
+    margin-top: $spacing-04;
     margin-bottom: $spacing-04;
   }
 
 .wish-p {
-    margin-top: $spacing-02;
-    margin-bottom: $spacing-08;
+    margin-top: $spacing-03;
+    margin-bottom: $spacing-06;
 }
 
 .wish-input {
