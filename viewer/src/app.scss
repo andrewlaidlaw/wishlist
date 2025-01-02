@@ -1,0 +1,41 @@
+@use "@carbon/react";
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.heading-panel {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.wish-heading {
+    @include type-style('productive-heading-06');
+    margin-top: $spacing-04;
+    margin-bottom: $spacing-04;
+}
+
+.tile-panel {
+    margin: $spacing-04;
+}
+
+.tile-footer {
+    @include type-style('label-01');
+    margin-top: $spacing-02;
+    margin-bottom: $spacing-02;
+}
+
+.tile-heading {
+    @include type-style('productive-heading-02');
+    margin-top: $spacing-02;
+    margin-bottom: $spacing-02;
+}
+
+.wish-p {
+    margin-top: $spacing-03;
+    margin-bottom: $spacing-06;
+}
+
+.wish-input {
+    margin-top: $spacing-06
+}
