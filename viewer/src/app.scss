@@ -3,6 +3,8 @@
 @use '@carbon/react/scss/type' as *;
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
+// @use '@carbon/react/scss/themes' as *;
+// @use '@carbon/react/scss/fonts' as *;
 
 .heading-panel {
     margin-left: 0px;
@@ -38,4 +40,8 @@
 
 .wish-input {
     margin-top: $spacing-06
+}
+
+.wish-code {
+    @include type-style('code-02');
 }

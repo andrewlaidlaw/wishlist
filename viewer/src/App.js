@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
+  AILabel,
+  AILabelContent,
+  AILabelActions,
+  Button,
   Column,
   Content,
   Grid,
@@ -8,9 +12,11 @@ import {
   HeaderNavigation,
   HeaderMenuItem,
   SkipToContent,
+  Tag,
   Tile,
+  Theme
 } from "@carbon/react";
-import { Theme } from "@carbon/react";
+import { unstable_FeatureFlags as FeatureFlags } from '@carbon/react';
 import "./app.scss";
 
 function App() {
@@ -54,7 +60,15 @@ function App() {
   const WishList = () => {
     return (
       <Column>
-        {wishes.map((item, index) => <Wish key={index} id={index + 1} wish={item.wish} name={item.name} time={item.time} />)}
+        <FeatureFlags
+          flags={{
+            'enable-v12-tile-default-icons': true,
+          }}>
+          <div className="ai-label-tile-container">
+
+            {wishes.map((item, index) => <Wish key={index} id={index + 1} wish={item.wish} name={item.name} time={item.time} sentiment={item.sentiment} category={item.category} />)}
+          </div>
+        </FeatureFlags>
       </Column>
     );
   }
@@ -63,22 +77,73 @@ function App() {
   const Wish = (props) => {
     var wishname = "";
     var time = "";
+    var aiused = false;
     if (props.name === "") { wishname = "Anonymous" } else { wishname = props.name };
     if (props.time) { time = new Date(props.time).toLocaleString() } else { time = "unknown time" };
+    if (props.sentiment) { aiused = true };
+    if (props.category) { aiused = true };
 
-    return (
-      <Tile key={props.id} className="tile-panel">
-        <h2 className="tile-heading">Wish {props.id}:</h2>
-        <p>
-          {props.wish}
-        </p>
-        <p className="tile-footer">
-          [ {wishname} ] - {time}
-        </p>
-      </Tile>
-    )
+    if (aiused) {
+      var tags;
+      var aitags;
+      var sentiment;
+      if (props.sentiment === "positive") {sentiment="green"}
+      if (props.sentiment === "negative") {sentiment="red"}
+      if (props.sentiment === "neutral") {sentiment="cool-gray"}
+      if (props.sentiment) { tags = <Tag type={sentiment}>{props.sentiment}</Tag>; aitags = <p className="secondary">Sentiment</p> }
+      if (props.category) { tags = <Tag type="purple">Category: {props.category}</Tag>; aitags = <p className="secondary">Category</p> }
+      if (props.category && props.sentiment) {
+        tags = <div><Tag type={sentiment}>{props.sentiment}</Tag><Tag type="purple">Category: {props.category}</Tag></div>;
+        aitags = <div><p className="secondary">Category</p>
+          <p className="secondary">Sentiment</p></div>
+      }
+
+      return (
+        <Tile key={props.id} className="tile-panel" id={props.id} decorator={
+          <AILabel className="ai-label-container">
+            <AILabelContent>
+              <div>
+                <h6 className="secondary">AI Explained</h6>
+                <p className="secondary">A large language model has been used to analyze the originally provided text data to provide greater insight.</p>
+                <hr /><br />
+                <h6 className="secondary">Model type</h6>
+                <p className="wish-code">Foundation model</p>
+                <h6 className="secondary">Data inferred</h6>
+                {aitags}
+              </div>
+              <AILabelActions>
+                <Button>View details</Button>
+              </AILabelActions>
+            </AILabelContent>
+          </AILabel>
+        }>
+          <h2 className="tile-heading">Wish {props.id}:</h2>
+          <p>
+            {props.wish}
+          </p>
+          <p className="tile-footer">
+            <br />
+            [ {wishname} ] - {time}
+          </p>
+          {tags}
+        </Tile>
+      )
+    } else {
+      return (
+        <Tile key={props.id} className="tile-panel" id={props.id} >
+          <h2 className="tile-heading">Wish {props.id}:</h2>
+          <p>
+            {props.wish}
+          </p>
+          <p className="tile-footer">
+            <br />
+            [ {wishname} ] - {time}
+          </p>
+        </Tile>
+      )
+    }
+
   }
-
   // create the contents of the page
   return (
 
@@ -118,7 +183,7 @@ function App() {
                 <p className="wish-p">
                   Here are the suggestions from our Business Partner community that share what they would
                   like to see from the IBM Power brand in 2025. All ideas were welcomed, and we gave our
-                  Partners the option to be ananymous.
+                  Partners the option to be anonymous. Ideas are presented in the order they were submitted.
                 </p>
               </Column>
               <Column md={6} lg={{ span: 8, offset: 4 }} sm={4}>
