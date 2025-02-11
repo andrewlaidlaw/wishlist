@@ -87,7 +87,7 @@ function App() {
       var tags;
       var aitags;
       var sentiment;
-      if (props.sentiment === "positive") {sentiment="green"}
+      if (props.sentiment === "positive") {sentiment="green"} 
       if (props.sentiment === "negative") {sentiment="red"}
       if (props.sentiment === "neutral") {sentiment="cool-gray"}
       if (props.sentiment) { tags = <Tag type={sentiment}>{props.sentiment}</Tag>; aitags = <p className="secondary">Sentiment</p> }
