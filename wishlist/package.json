@@ -1,6 +1,6 @@
 {
-  "name": "wishlist",
-  "version": "0.1.0",
+  "name": "questions",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@carbon/icons-react": "^11.53.0",
