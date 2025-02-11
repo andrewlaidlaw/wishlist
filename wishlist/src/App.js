@@ -25,8 +25,8 @@ function App() {
 
   // Get URL from environment variable in .env file
   // Must be the full API location (including path)
-  // const url = process.env.REACT_APP_BACKEND_URL;
-  const url = "http://localhost:8080/insert";
+  const url = process.env.REACT_APP_BACKEND_URL;
+  // const url = "http://localhost:8080/insert";
 
   // handle submission of an idea
   const handleSubmit = (event) => {
