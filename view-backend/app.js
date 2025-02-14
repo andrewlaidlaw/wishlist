@@ -16,7 +16,7 @@ const mongoURL = process.env.mongo_url;
 //const mongoCollection = process.env.database_collection;
 
 // const mongoDatabase = "wishes";
-const mongoCollection = "wishes";
+const mongoCollection = "questions";
 
 // Build MongoDB connection string
 //================================
@@ -82,65 +82,6 @@ app.get('/findall', (req, res) => {
 
     findall().catch(console.dir);
 })
-
-// Insert a single document into the collection, passed as a JSON string
-// No checks on formatting are included
-// This is the GET request - probably not needed (document attached to 'query' parameter)
-// app.get('/insert', (req, res) => {
-//     const client = new MongoClient(url);
-//     console.log("connection created");
-
-//     async function insertwishget(entry) {
-//         console.log("Inserting: " + JSON.stringify(entry));
-//         try {
-//             await client.connect();
-//             console.log("connected");
-//             const collection = client.db(mongoDatabase).collection(mongoCollection);
-//             console.log("collection set");
-//             result = await collection.insertOne(entry);
-//             console.log("insert completed");
-//         } finally {
-//             await client.close();
-//             console.log("client closed");
-//         }
-//         console.log("insert result:");
-//         console.log(result);
-//         res.send(result);
-//     }
-
-//     insertwishget(req.query).catch(console.dir);
-// })
-
-// Insert a single document into the collection, passed as a JSON string
-// No checks on formatting are included
-// This is the POST request - the whole body object is used
-// app.post('/insert', (req, res) => {
-//     const client = new MongoClient(url);
-//     console.log("connection created");
-
-//     async function insertwishpost(entry) {
-//         console.log("Inserting: " + JSON.stringify(entry));
-//         try {
-//             await client.connect();
-//             console.log("connected");
-//             const collection = client.db(mongoDatabase).collection(mongoCollection);
-//             console.log("collection set");
-//             result = await collection.insertOne(entry);
-//             console.log("insert completed");
-//         } finally {
-//             await client.close();
-//             console.log("client closed");
-//         }
-//         console.log("insert result:");
-//         console.log(result);
-//         res.send(result);
-//     }
-//     if (req.body.time && req.body.wish) {
-//         insertwishpost(req.body).catch(console.dir);
-//     } else {
-//         res.send("Not accepted");
-//     }
-// })
 
 // Deploy web server and log status
 app.listen(port, hostname, () => {

@@ -66,16 +66,19 @@ function App() {
     // <BrowserRouter>
     <Content>
       <Theme theme="g100">
-        <Header aria-label="IBM Power">
+      <Header aria-label="IBM Power & Storage">
           <SkipToContent />
           <HeaderName
             prefix="IBM"
           >
-            Power
+            Power & Storage
           </HeaderName>
-          <HeaderNavigation>
+          <HeaderNavigation aria-label="Links menu">
             <HeaderMenuItem href="https://www.ibm.com/power/">
               Power Landing Page
+            </HeaderMenuItem>
+            <HeaderMenuItem href="https://www.ibm.com/storage/">
+              Storage Landing Page
             </HeaderMenuItem>
             {/* <HeaderMenuItem href="made.html">
               How we made this
@@ -85,9 +88,6 @@ function App() {
             </HeaderMenuItem>
             <HeaderMenuItem href="https://try.openshift.com">
               Red Hat OpenShift
-            </HeaderMenuItem>
-            <HeaderMenuItem href="https://www.ibm.com/partnerplus">
-              IBM Partner Plus
             </HeaderMenuItem>
           </HeaderNavigation>
         </Header>

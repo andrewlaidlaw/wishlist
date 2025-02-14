@@ -29,8 +29,8 @@ function App() {
 
     // Get URL from environment variable in .env file
     // Must be the full API location (including path)
-    const url = process.env.REACT_APP_READER_URL;
-    // const url = "http://localhost:8080/findall";
+    // const url = process.env.REACT_APP_READER_URL;
+    const url = "http://localhost:8080/findall";
 
     // define the function to read all entries from the Mongo Database
     const readFromMongo = () => {
@@ -66,7 +66,7 @@ function App() {
           }}>
           <div className="ai-label-tile-container">
 
-            {wishes.map((item, index) => <Wish key={index} id={index + 1} wish={item.wish} name={item.name} time={item.time} sentiment={item.sentiment} category={item.category} />)}
+            {wishes.map((item, index) => <Wish key={index} id={index + 1} question={item.question} name={item.name} time={item.time} sentiment={item.sentiment} category={item.category} />)}
           </div>
         </FeatureFlags>
       </Column>
@@ -117,9 +117,9 @@ function App() {
             </AILabelContent>
           </AILabel>
         }>
-          <h2 className="tile-heading">Wish {props.id}:</h2>
+          <h2 className="tile-heading">Question {props.id}:</h2>
           <p>
-            {props.wish}
+            {props.question}
           </p>
           <p className="tile-footer">
             <br />
@@ -131,9 +131,9 @@ function App() {
     } else {
       return (
         <Tile key={props.id} className="tile-panel" id={props.id} >
-          <h2 className="tile-heading">Wish {props.id}:</h2>
+          <h2 className="tile-heading">Question {props.id}:</h2>
           <p>
-            {props.wish}
+            {props.question}
           </p>
           <p className="tile-footer">
             <br />
@@ -150,16 +150,19 @@ function App() {
     <Content>
 
       <Theme theme="g100">
-        <Header aria-label="IBM Power">
+        <Header aria-label="IBM Power & Storage">
           <SkipToContent />
           <HeaderName
             prefix="IBM"
           >
-            Power
+            Power & Storage
           </HeaderName>
           <HeaderNavigation aria-label="Links menu">
             <HeaderMenuItem href="https://www.ibm.com/power/">
               Power Landing Page
+            </HeaderMenuItem>
+            <HeaderMenuItem href="https://www.ibm.com/storage/">
+              Storage Landing Page
             </HeaderMenuItem>
             {/* <HeaderMenuItem href="made.html">
               How we made this
@@ -179,11 +182,10 @@ function App() {
           <Content>
             <Grid>
               <Column md={6} lg={{ span: 8, offset: 4 }} sm={4} >
-                <h2 className="wish-heading">IBM Power 2025 Wishlist</h2>
+                <h2 className="wish-heading">Ask the IBM Leadership team</h2>
                 <p className="wish-p">
-                  Here are the suggestions from our Business Partner community that share what they would
-                  like to see from the IBM Power brand in 2025. All ideas were welcomed, and we gave our
-                  Partners the option to be anonymous. Ideas are presented in the order they were submitted.
+                  Here are the questions that have been raised in advance of the 4th March event to be raised with the IBM Leadership team.
+                  Ideas are presented in the order they were submitted.
                 </p>
               </Column>
               <Column md={6} lg={{ span: 8, offset: 4 }} sm={4}>
