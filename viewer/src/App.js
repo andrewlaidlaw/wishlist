@@ -29,8 +29,8 @@ function App() {
 
     // Get URL from environment variable in .env file
     // Must be the full API location (including path)
-    // const url = process.env.REACT_APP_READER_URL;
-    const url = "http://localhost:8080/findall";
+    const url = process.env.REACT_APP_READER_URL;
+    // const url = "http://localhost:8080/findall";
 
     // define the function to read all entries from the Mongo Database
     const readFromMongo = () => {
